@@ -22,7 +22,7 @@ export class Customer {
   }
 }
 
-namespace Customer {
+export namespace Customer {
   export type Constructor = {
     id: string
     document: number

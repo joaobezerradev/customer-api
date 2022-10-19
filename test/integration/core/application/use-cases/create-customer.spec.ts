@@ -1,4 +1,4 @@
-import { CreateCustomer } from '@application/use-cases/create-customer'
+import { CreateCustomer } from '@application/use-cases'
 import { RepositoryFactory } from '@domain/factories'
 import { faker } from '@faker-js/faker'
 import { Connection, RedisConnection } from '@infra/database'
