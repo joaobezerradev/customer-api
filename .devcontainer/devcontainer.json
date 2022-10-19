@@ -1,0 +1,19 @@
+{
+  "name": "Stone Challenger API - Docker Remote Container",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
+  "service": "api",
+  "workspaceFolder": "/home/node/app",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "gruntfuggly.todo-tree",
+    "shd101wyy.markdown-preview-enhanced"
+  ],
+  "forwardPorts": [3333],
+  "postCreateCommand": "npm i && npm run start:dev"
+}
