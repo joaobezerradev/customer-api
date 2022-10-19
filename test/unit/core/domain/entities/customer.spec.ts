@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Customer } from '@domain/entities'
 
-describe('Customer | Entity', () => {
+describe('Customer', () => {
   it('should be possible create a instance.', () => {
     expect(() => new Customer({
       id: faker.datatype.uuid(),

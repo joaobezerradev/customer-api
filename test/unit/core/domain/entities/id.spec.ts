@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { ID } from '@domain/entities'
 
-describe('ID | Entity', () => {
+describe('ID', () => {
   it('should be possible create a instance.', () => {
     expect(() => new ID()).not.toThrow()
    })
