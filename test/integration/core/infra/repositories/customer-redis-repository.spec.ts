@@ -41,4 +41,17 @@ describe('CustomerRedisRepository', () => {
     const response = await sut.getOne(key)
     expect(response).toMatchObject(customer.getState())
   })
+
+  it('should be able to remove a customer by key', async () => {
+    const customer = new Customer({
+      id: faker.datatype.uuid(),
+      document: faker.datatype.number(),
+      name: faker.name.fullName()
+    })
+    await sut.save(customer)
+    const key = `customer:${customer.getState().id}`
+    await sut.remove(key)
+    const response = await sut.getOne(key)
+    expect(response).toBeNull()
+  })
 })
