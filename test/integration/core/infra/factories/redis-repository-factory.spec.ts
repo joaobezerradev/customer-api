@@ -13,7 +13,7 @@ describe('RedisRepositoryFactory', () => {
 
   afterAll(() => connection.close())
 
-  it('should be able to create a instance of CustomerRepository', async () => {
+  it('should be able to create a instance of CustomerRepository.', async () => {
     expect(() => sut.createCustomerRepository()).not.toThrow()
   })
 })
