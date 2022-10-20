@@ -22,14 +22,6 @@ describe('Redis Connection', () => {
     expect(response).toBeNull()
   })
 
-  it('should delete the data.', async () => {
-    const key = 'key-to-clear'
-    await sut.save(key, 'any-data')
-    await sut.delete(key)
-    const response = await sut.query(key)
-    expect(response).toBeNull()
-  })
-
   it('should clear all data', async () => {
     const keyOne = 'key-to-clear-one'
     const keyTwo = 'key-to-clear-two'

@@ -29,10 +29,6 @@ export class RedisConnection implements Connection {
     }
   }
 
-  async delete (key: string): Promise<void> {
-    await this.client.del(key)
-  }
-
   close (): void {
     this.client.disconnect()
   }

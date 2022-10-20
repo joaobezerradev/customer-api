@@ -16,10 +16,6 @@ export class CustomerRedisRepository implements CustomerRepository {
     return new Customer(customer)
   }
 
-  async remove (key: string): Promise<void> {
-    await this.connection.delete(key)
-  }
-
   protected getKey (customer: Customer): string {
     return `customer:${customer.getState().id}`
   }
