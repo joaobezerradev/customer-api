@@ -2,6 +2,7 @@ import { Connection } from './connection'
 
 import Redis from 'ioredis'
 import { config } from 'dotenv'
+import { BadGatewayException } from '@nestjs/common'
 
 config()
 
@@ -13,13 +14,21 @@ export class RedisConnection implements Connection {
   }
 
   async query<T> (key: string): Promise<T | null> {
-    const response = await this.client.get(key)
-    if (response === null) return null
-    return JSON.parse(response)
+    try {
+      const response = await this.client.get(key)
+      if (response === null) return null
+      return JSON.parse(response)
+    } catch {
+      throw new BadGatewayException('cache indisponível')
+    }
   }
 
   async save<T> (key: string, data: T): Promise<void> {
-    await this.client.set(key, JSON.stringify(data))
+    try {
+      await this.client.set(key, JSON.stringify(data))
+    } catch {
+      throw new BadGatewayException('cache indisponível')
+    }
   }
 
   async clearStorage (): Promise<void> {
