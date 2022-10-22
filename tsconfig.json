@@ -27,6 +27,9 @@
       "@infra/*": [
         "./src/core/infra/*"
       ],
+      "~config/*": [
+        "./src/config/*"
+      ],
       "~/test/*": [
         "./test/*"
       ]
