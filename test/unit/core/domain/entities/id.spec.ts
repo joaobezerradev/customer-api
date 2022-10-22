@@ -4,7 +4,7 @@ import { ID } from '@domain/entities'
 describe('ID', () => {
   it('should be possible create a instance.', () => {
     expect(() => new ID()).not.toThrow()
-   })
+  })
 
   it('should throws if invalid value is provided.', () => {
     const value = 'invalid_uuid'

@@ -1,4 +1,5 @@
-import { CreateCustomer } from '@application/use-cases'
+import { CreateCustomerCase } from '@application/use-cases'
+import { CreateCustomer } from '@application/use-cases/contracts'
 import { RepositoryFactory } from '@domain/factories'
 import { faker } from '@faker-js/faker'
 import { Connection, RedisConnection } from '@infra/database'
@@ -12,7 +13,7 @@ describe('CreateCustomer', () => {
   beforeAll(() => {
     connection = new RedisConnection(process.env.REDIS_HOST!)
     repositoryFactory = new RedisRepositoryFactory(connection)
-    sut = new CreateCustomer(repositoryFactory)
+    sut = new CreateCustomerCase(repositoryFactory)
   })
 
   afterAll(async () => {

@@ -1,6 +1,7 @@
 import { Connection, RedisConnection } from '@infra/database'
+import { BadGatewayException } from '@nestjs/common'
 
-describe('Redis Connection', () => {
+describe('RedisConnection', () => {
   let sut: Connection
 
   beforeAll(() => {
@@ -35,5 +36,15 @@ describe('Redis Connection', () => {
 
   it('should close connection.', () => {
     expect(() => sut.close()).not.toThrow()
+  })
+
+  it('should throws if query throws.', async () => {
+    jest.mock('ioredis', () => ({ Redis: jest.fn().mockImplementationOnce(Promise.reject) }))
+    await expect(() => sut.query('any-key')).rejects.toThrowError(BadGatewayException)
+  })
+
+  it('should throws if save throws.', async () => {
+    jest.mock('ioredis', () => ({ Redis: jest.fn().mockImplementationOnce(Promise.reject) }))
+    await expect(() => sut.save('any-key', 'any-data')).rejects.toThrowError(BadGatewayException)
   })
 })

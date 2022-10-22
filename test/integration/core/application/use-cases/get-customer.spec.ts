@@ -1,4 +1,5 @@
-import { GetCustomer } from '@application/use-cases'
+import { GetCustomerCase } from '@application/use-cases'
+import { GetCustomer } from '@application/use-cases/contracts'
 import { NotFoundException } from '@domain/exceptions'
 import { RepositoryFactory } from '@domain/factories'
 import { faker } from '@faker-js/faker'
@@ -13,7 +14,7 @@ describe('GetCustomer', () => {
   beforeAll(() => {
     connection = new RedisConnection(process.env.REDIS_HOST!)
     repositoryFactory = new RedisRepositoryFactory(connection)
-    sut = new GetCustomer(repositoryFactory)
+    sut = new GetCustomerCase(repositoryFactory)
   })
 
   afterAll(async () => {

@@ -1,10 +1,11 @@
 import { RepositoryFactory } from '@domain/factories'
-import { UpdateCustomer } from '@application/use-cases'
+import { UpdateCustomerCase } from '@application/use-cases'
 import { Connection, RedisConnection } from '@infra/database'
 import { RedisRepositoryFactory } from '@infra/factories'
 
 import { faker } from '@faker-js/faker'
 import { ConflictException, NotFoundException } from '@domain/exceptions'
+import { UpdateCustomer } from '@application/use-cases/contracts'
 
 describe('UpdateCustomer', () => {
   let connection: Connection
@@ -14,7 +15,7 @@ describe('UpdateCustomer', () => {
   beforeAll(() => {
     connection = new RedisConnection(process.env.REDIS_HOST!)
     repositoryFactory = new RedisRepositoryFactory(connection)
-    sut = new UpdateCustomer(repositoryFactory)
+    sut = new UpdateCustomerCase(repositoryFactory)
   })
 
   afterAll(async () => {
