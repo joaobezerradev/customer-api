@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
 import { config } from 'dotenv'
-import { ExceptionHandler } from './config'
-import { MainModule } from './main.module'
+import { ExceptionHandler } from '~config/exception-handler'
+import { MainModule } from './config/main.module'
 
 config()
 
