@@ -1,10 +1,10 @@
 export interface HttpClient {
-  post: <B = any, R = any> (uri: string, body: B, config?: HttpClient.Config) => Promise<HttpClient.Output<R>>
+  post: <R = any, B = any> (endpoint: string, body: B, config?: HttpClient.Config) => Promise<HttpClient.Output<R>>
 }
 
 export namespace HttpClient {
   export type Config = {
-    headers: {
+    headers?: {
       [key: string]: string
     }
   }
