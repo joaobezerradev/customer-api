@@ -2,6 +2,7 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/core/**/*.ts', '!<rootDir>/src/core/**/index.ts'],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
+  clearMocks: true,
   moduleNameMapper: {
     '~/test/(.+)': '<rootDir>/test/$1',
     '@domain/(.+)': '<rootDir>/src/core/domain/$1',
