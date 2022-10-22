@@ -1,3 +1,3 @@
-export interface SSO {
-  execute: (token: string) => Promise<void>
+export interface SSO<R = any> {
+  validate: (request: R) => Promise<boolean>
 }
