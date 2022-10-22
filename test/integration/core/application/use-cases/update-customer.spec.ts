@@ -23,7 +23,7 @@ describe('UpdateCustomer', () => {
   })
 
   it('should throws if customer is not found.', async () => {
-    await expect(async () => sut.execute({
+    await expect(() => sut.execute({
       id: faker.datatype.uuid(),
       newId: faker.datatype.uuid(),
       document: faker.datatype.number(),
@@ -61,7 +61,7 @@ describe('UpdateCustomer', () => {
     }
     const key = `customer:${data.id}`
     await connection.save(key, data)
-    await expect(async () => sut.execute({
+    await expect(() => sut.execute({
       id: data.id,
       newId: data.id,
       document: data.document,

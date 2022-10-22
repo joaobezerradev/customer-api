@@ -23,7 +23,7 @@ describe('GetCustomer', () => {
 
   it('should throws if customer is not found.', async () => {
     const input = { id: faker.datatype.uuid() }
-    await expect(async () => sut.execute(input)).rejects.toThrowError(NotFoundException)
+    await expect(() => sut.execute(input)).rejects.toThrowError(NotFoundException)
   })
 
   it('should return a customer by id.', async () => {
