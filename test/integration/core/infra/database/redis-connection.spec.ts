@@ -1,13 +1,10 @@
-import { faker } from '@faker-js/faker'
 import { Connection, RedisConnection } from '@infra/database'
-import { BadGatewayException } from '@nestjs/common'
 
 describe('Redis Connection', () => {
   let sut: Connection
 
   beforeAll(() => {
-    const host = 'redis'
-    sut = new RedisConnection(host)
+    sut = new RedisConnection(process.env.REDIS_HOST!)
   })
 
   it('should be possible to persist and consult the data.', async () => {
@@ -22,18 +19,6 @@ describe('Redis Connection', () => {
     const key = 'not-found-key'
     const response = await sut.query(key)
     expect(response).toBeNull()
-  })
-
-  it('should throws if query on redis client throws', async () => {
-    jest.spyOn(sut, 'query').mockRejectedValueOnce(new BadGatewayException())
-    const key = faker.datatype.uuid()
-    await expect(sut.query(key)).rejects.toThrowError(BadGatewayException)
-  })
-
-  it('should throws if save on redis client throws', async () => {
-    jest.spyOn(sut, 'save').mockRejectedValueOnce(new BadGatewayException())
-    const key = faker.datatype.uuid()
-    await expect(sut.save(key, 'data')).rejects.toThrowError(BadGatewayException)
   })
 
   it('should clear all data', async () => {
