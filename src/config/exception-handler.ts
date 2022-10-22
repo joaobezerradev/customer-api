@@ -1,30 +1,22 @@
 import { BaseException } from '@domain/exceptions'
 import {
   ExceptionFilter,
-  ArgumentsHost,
-  Catch
+  ConflictException,
+  NotFoundException
 } from '@nestjs/common'
 
-@Catch()
 export class ExceptionHandler implements ExceptionFilter {
-  catch (exception: Error, host: ArgumentsHost): void {
-    const response = host.switchToHttp().getResponse()
+  catch (exception: Error): void {
     if (exception instanceof BaseException) {
-      const { statusCode, detail, type } = exception
-
-      if (typeof detail === 'string') {
-        response.status(statusCode).send({
-          message: detail,
-          type
-        })
-      } else {
-        response.status(statusCode).send({
-          messages: detail.map(message => ({ message })),
-          type
-        })
+      switch (exception.code) {
+        case 409:
+          throw new ConflictException()
+        case 404:
+          throw new NotFoundException()
+        default:
+          throw exception
       }
     }
-
-    response.status(500).send({ message: exception.message })
+    throw exception
   }
 }
