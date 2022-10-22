@@ -19,7 +19,7 @@ export class RedisConnection implements Connection {
       if (response === null) return null
       return JSON.parse(response)
     } catch {
-      throw new BadGatewayException('cache indisponível')
+      throw new BadGatewayException()
     }
   }
 
@@ -27,15 +27,13 @@ export class RedisConnection implements Connection {
     try {
       await this.client.set(key, JSON.stringify(data))
     } catch {
-      throw new BadGatewayException('cache indisponível')
+      throw new BadGatewayException()
     }
   }
 
   async clearStorage (): Promise<void> {
     const keys = await this.client.keys('*')
-    if (keys.length) {
-      await this.client.del(keys)
-    }
+    if (keys.length) await this.client.del(keys)
   }
 
   close (): void {
