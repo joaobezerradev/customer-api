@@ -1,3 +1,3 @@
-export * from './create-customer'
-export * from './update-customer'
-export * from './get-customer'
+export * from './create-customer-case'
+export * from './update-customer-case'
+export * from './get-customer-case'

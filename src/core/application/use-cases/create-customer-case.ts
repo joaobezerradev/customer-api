@@ -1,8 +1,9 @@
 import { Customer } from '@domain/entities'
 import { RepositoryFactory } from '@domain/factories'
 import { CustomerRepository } from '@domain/repositories'
+import { CreateCustomer } from './contracts'
 
-export class CreateCustomer {
+export class CreateCustomerCase implements CreateCustomer {
   private readonly customerRepository: CustomerRepository
 
   constructor (repositoryFactory: RepositoryFactory) {
@@ -13,18 +14,5 @@ export class CreateCustomer {
     const customer = new Customer(input)
     await this.customerRepository.save(customer)
     return customer.getState()
-  }
-}
-
-namespace CreateCustomer {
-  export type Input = {
-    id: string
-    document: number
-    name: string
-  }
-  export type Output = {
-    id: string
-    document: number
-    name: string
   }
 }
