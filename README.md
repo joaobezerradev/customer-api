@@ -1,4 +1,7 @@
+
 ## Iniciando o projeto dentro do container
+
+### Utilizar o VSCode
 
 #### Clone o repositório na pasta desejada e abra no vscode.
 
