@@ -4,8 +4,6 @@ ENV HOME=/home/node
 ENV APP=${HOME}/app
 ENV ZSH_CUSTOM=${HOME}/.oh-my-zsh/custom
 
-USER root
-
 RUN apk add --no-cache zsh zsh-vcs git \
     && apk add curl wget --update
 
