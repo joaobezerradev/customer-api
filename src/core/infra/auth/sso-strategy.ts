@@ -31,9 +31,7 @@ export class SSOStrategy extends PassportStrategy(Strategy, 'SSO') implements SS
 
   protected getToken (request: FastifyRequest): string {
     const authType = 'Bearer '
-    if (request?.headers?.authorization?.startsWith(authType)) {
-      return request.headers.authorization.replace(authType, '')
-    }
+    if (request?.headers?.authorization?.startsWith(authType)) return request.headers.authorization.replace(authType, '')
     throw new UnauthorizedException()
   }
 }
