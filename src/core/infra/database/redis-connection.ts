@@ -2,15 +2,19 @@ import { Connection } from './connection'
 
 import Redis from 'ioredis'
 import { config } from 'dotenv'
-import { BadGatewayException } from '@nestjs/common'
+import { BadGatewayException, BeforeApplicationShutdown } from '@nestjs/common'
 
 config()
 
-export class RedisConnection implements Connection {
+export class RedisConnection implements Connection, BeforeApplicationShutdown {
   private readonly client: Redis
 
   constructor (host: string) {
     this.client = new Redis({ host })
+  }
+
+  async beforeApplicationShutdown (): Promise<void> {
+    this.close()
   }
 
   async query<T> (key: string): Promise<T | null> {
