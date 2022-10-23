@@ -11,17 +11,15 @@ export class UpdateCustomerCase implements UpdateCustomer {
   }
 
   async execute (input: UpdateCustomer.Input): Promise<UpdateCustomer.Output> {
-    const key = this.buildKey(input.id)
-    const customer = await this.customerRepository.getOne(key)
+    const customer = await this.customerRepository.getOne(this.buildKey(input.id))
     if (customer === null) throw new NotFoundException()
+    const otherCustomer = await this.customerRepository.getOne(this.buildKey(input.newId))
+    if (otherCustomer !== null) throw new ConflictException()
     customer.update({
       id: input.newId,
       document: input.document,
       name: input.name
     })
-    const updatedKey = this.buildKey(customer.getState().id)
-    const otherCustomer = await this.customerRepository.getOne(updatedKey)
-    if (otherCustomer !== null) throw new ConflictException()
     await this.customerRepository.save(customer)
     return customer.getState()
   }
