@@ -29,7 +29,7 @@ export class Customer {
 
 export namespace Customer {
   export type Constructor = {
-    id: string
+    id?: string
     document: number
     name: string
   }

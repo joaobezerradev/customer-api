@@ -4,7 +4,6 @@ export interface CreateCustomer {
 
 export namespace CreateCustomer {
   export type Input = {
-    id: string
     document: number
     name: string
   }
