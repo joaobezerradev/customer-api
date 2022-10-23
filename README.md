@@ -40,7 +40,7 @@ $ code .
 `Agora basta baixar as dependencias executando no terminal do vscode (que já está no contexto do container) usando o comando:`
 
 ```bash
-$ npm c
+$ npm ci
 ```
 
 #### Executando

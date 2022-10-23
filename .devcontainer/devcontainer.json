@@ -15,5 +15,5 @@
     "shd101wyy.markdown-preview-enhanced"
   ],
   "forwardPorts": [3333],
-  "postCreateCommand": "npm i && npm run start:dev"
+  "postCreateCommand": "npm ci && npm run start:dev"
 }
