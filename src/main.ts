@@ -12,7 +12,7 @@ config()
 const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create<NestFastifyApplication>(MainModule, new FastifyAdapter())
   app.useGlobalFilters(new ExceptionHandler())
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
   app.enableCors()
 
   const config = new DocumentBuilder()
