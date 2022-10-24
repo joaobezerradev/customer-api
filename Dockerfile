@@ -7,7 +7,7 @@ WORKDIR /home/node/app
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
-RUN npm ci && npm i -g @nestjs/cli
+RUN npm i -g @nestjs/cli
 
 COPY . .
 
