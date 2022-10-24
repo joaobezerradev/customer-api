@@ -1,8 +1,8 @@
 
-## Iniciando o projeto dentro do container
+## Passo a passo para executar a aplicação
 
 
-#### Clone o repositório
+### Clone o repositório
 
 ```bash
 # Clonando o repositório na pasta customer-api.
@@ -36,7 +36,7 @@ $ npm run start:dev
 - URL Swagger - http://localhost:3333/api
 - API acessível em http://localhost:3333
 
-## Testando
+### Testando
 
 ```bash
 # run all tests
